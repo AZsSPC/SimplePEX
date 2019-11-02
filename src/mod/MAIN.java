@@ -1,5 +1,8 @@
 package mod;
 
+import jdk.nashorn.internal.runtime.regexp.joni.SearchAlgorithm;
+import static mod.Logic.permissionCompiliter;
+
 public class MAIN extends javax.swing.JFrame {
 
  public MAIN() {
@@ -56,14 +59,12 @@ public class MAIN extends javax.swing.JFrame {
   jComboBox2.setBackground(new java.awt.Color(204, 204, 204));
   jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "world" }));
   jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Выбрать мир", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  jComboBox2.setFocusable(false);
   jComboBox2.setOpaque(false);
 
   jTextField5.setBackground(new java.awt.Color(204, 204, 204));
   jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   jTextField5.setText("world");
   jTextField5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Кастомный мир", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  jTextField5.setFocusable(false);
 
   jPanel7.setBackground(new java.awt.Color(153, 153, 153));
   jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -72,7 +73,6 @@ public class MAIN extends javax.swing.JFrame {
   jTextField8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   jTextField8.setText("world_test");
   jTextField8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Добавить мир в список миров", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  jTextField8.setFocusable(false);
 
   jButton1.setBackground(new java.awt.Color(152, 218, 152));
   jButton1.setText("Добавить");
@@ -102,8 +102,7 @@ public class MAIN extends javax.swing.JFrame {
   );
 
   jCheckBox4.setBackground(new java.awt.Color(204, 204, 204));
-  jCheckBox4.setText("Использовать право только в этом мире");
-  jCheckBox4.setFocusable(false);
+  jCheckBox4.setText("Использовать только в этом мире");
 
   javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
   jPanel2.setLayout(jPanel2Layout);
@@ -115,7 +114,7 @@ public class MAIN extends javax.swing.JFrame {
      .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
      .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
      .addGroup(jPanel2Layout.createSequentialGroup()
-      .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+      .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
       .addComponent(jCheckBox4)))
     .addContainerGap())
@@ -134,28 +133,26 @@ public class MAIN extends javax.swing.JFrame {
     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
   );
 
-  jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+  jPanel3.setBackground(new java.awt.Color(0, 0, 0));
   jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-  Suffix.setBackground(new java.awt.Color(204, 204, 204));
+  Suffix.setBackground(new java.awt.Color(0, 0, 0));
   Suffix.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   Suffix.setText("Suffix");
   Suffix.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Суффикс группы", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  Suffix.setFocusable(false);
 
-  Prefix.setBackground(new java.awt.Color(204, 204, 204));
+  Prefix.setBackground(new java.awt.Color(0, 0, 0));
   Prefix.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   Prefix.setText("Prefix");
   Prefix.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Префикс группы", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  Prefix.setFocusable(false);
 
-  Add_Prefix.setBackground(new java.awt.Color(152, 218, 152));
+  Add_Prefix.setBackground(new java.awt.Color(0, 0, 0));
   Add_Prefix.setText("Установить");
   Add_Prefix.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
   Add_Prefix.setFocusPainted(false);
   Add_Prefix.setFocusable(false);
 
-  Add_Suffix.setBackground(new java.awt.Color(152, 218, 152));
+  Add_Suffix.setBackground(new java.awt.Color(0, 0, 0));
   Add_Suffix.setText("Установить");
   Add_Suffix.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
   Add_Suffix.setFocusPainted(false);
@@ -167,12 +164,12 @@ public class MAIN extends javax.swing.JFrame {
    jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
    .addGroup(jPanel3Layout.createSequentialGroup()
     .addContainerGap()
-    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-     .addComponent(Suffix)
-     .addComponent(Prefix, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
-    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-     .addComponent(Add_Prefix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+     .addComponent(Prefix)
+     .addComponent(Suffix))
+    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+     .addComponent(Add_Prefix, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
      .addComponent(Add_Suffix, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     .addContainerGap())
   );
@@ -196,7 +193,6 @@ public class MAIN extends javax.swing.JFrame {
   List_Permission.setBackground(new java.awt.Color(204, 204, 204));
   List_Permission.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "chatex.allowchat.*" }));
   List_Permission.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Разрешение", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  List_Permission.setFocusable(false);
   List_Permission.setOpaque(false);
 
   jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
@@ -206,18 +202,15 @@ public class MAIN extends javax.swing.JFrame {
   About_Permission.setColumns(20);
   About_Permission.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   About_Permission.setRows(5);
-  About_Permission.setFocusable(false);
   jScrollPane2.setViewportView(About_Permission);
 
   Permission.setBackground(new java.awt.Color(204, 204, 204));
   Permission.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   Permission.setText("jTextField2");
   Permission.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Кастомное разрешение", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  Permission.setFocusable(false);
 
   Flag_Permission.setBackground(new java.awt.Color(204, 204, 204));
   Flag_Permission.setText("Збарать право");
-  Flag_Permission.setFocusable(false);
 
   Add_Permission.setBackground(new java.awt.Color(152, 218, 152));
   Add_Permission.setText("Добавить");
@@ -265,18 +258,15 @@ public class MAIN extends javax.swing.JFrame {
   Group.setBackground(new java.awt.Color(204, 204, 204));
   Group.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "player" }));
   Group.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Группа", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  Group.setFocusable(false);
   Group.setOpaque(false);
 
   jComboBox4.setBackground(new java.awt.Color(204, 204, 204));
   jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BASE" }));
   jComboBox4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Наследуется от", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  jComboBox4.setFocusable(false);
   jComboBox4.setOpaque(false);
 
   jCheckBox2.setBackground(new java.awt.Color(204, 204, 204));
   jCheckBox2.setText("Дефолтная группа");
-  jCheckBox2.setFocusable(false);
 
   jPanel8.setBackground(new java.awt.Color(153, 153, 153));
   jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -285,7 +275,6 @@ public class MAIN extends javax.swing.JFrame {
   jTextField9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   jTextField9.setText("admin");
   jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Добавить группу", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP));
-  jTextField9.setFocusable(false);
 
   jButton4.setBackground(new java.awt.Color(152, 218, 152));
   jButton4.setText("Добавить");
@@ -354,7 +343,6 @@ public class MAIN extends javax.swing.JFrame {
   OUT.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
   OUT.setRows(5);
   OUT.setBorder(null);
-  OUT.setFocusable(false);
   jScrollPane1.setViewportView(OUT);
 
   jButton6.setBackground(new java.awt.Color(152, 218, 152));
@@ -400,7 +388,7 @@ public class MAIN extends javax.swing.JFrame {
       .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
       .addComponent(Add_BaseConfing, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       .addComponent(Add_Reload, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
     .addContainerGap())
   );
@@ -425,11 +413,11 @@ public class MAIN extends javax.swing.JFrame {
    .addGroup(jPanel1Layout.createSequentialGroup()
     .addContainerGap()
     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
      .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    .addGap(10, 10, 10)
+     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     .addContainerGap())
   );
@@ -468,17 +456,16 @@ public class MAIN extends javax.swing.JFrame {
  }// </editor-fold>//GEN-END:initComponents
 
  private void Add_ReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_ReloadActionPerformed
-  String s = "";
-  Object[] o = Init.$_Groups.get("Player");
-  for (int i = 0; i < o.length; i++) {
-   s += o[i] + "\n";
-  }
-  OUT.setText(s);
+  String tOut = "";
+  tOut = permissionCompiliter();
+  OUT.setText(tOut);
  }//GEN-LAST:event_Add_ReloadActionPerformed
 
  public static void main(String args[]) {
   new MAIN().setVisible(true);
-  Init.GroupSet("Player", new String[][]{}, "prefix", "suffix", true, "BASE");
+  Init.GroupSet("Player", new String[]{",true,chatex.allowchat", "world,false,nte.admin", ",true,nte.admin"}, new String[]{",prefix"}, new String[]{"world,suffix"}, "BASE", true);
+  Init.GroupSet("Admin", new String[]{",true,chatex.allowchat", "world,true,nte.admin", ",true,nte.admin"}, new String[]{",prefix"}, new String[]{"world,suffix"}, "BASE", true);
+  Init.GroupSet("Moder", new String[]{",true,chatex.allowchat", "world,false,nte.admin", ",false,nte.admin"}, new String[]{",prefix"}, new String[]{"world,suffix"}, "BASE", false);
  }
  // Variables declaration - do not modify//GEN-BEGIN:variables
  public static javax.swing.JTextArea About_Permission;
