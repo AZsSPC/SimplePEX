@@ -13,16 +13,24 @@ public class Init {
  }
 
  public static void GroupSet(String groupName, String[] permissions, String[] prefix, String[] suffix, String instance, boolean isBase) {
-  try {
-   if (isBase) {
-    Object[] o = $_Groups.get($_DefaultIndex);
-    $_Groups.set($_DefaultIndex, new Object[]{o[0], o[1], o[2], o[3], o[4], false, o[6]});
+  boolean torf = true;
+  for (int i = 0; i < $_Groups.size(); i++) {
+   System.out.println($_Groups.get(i)[0]);
+   if ($_Groups.get(i)[0].equals(groupName )) {
+    torf = false;
    }
-  } catch (Exception e) {
   }
-  $_Groups.add(new Object[]{groupName, permissions, prefix, suffix, instance, isBase, new String[]{}});
-  System.out.println("group [" + groupName + "] been putted");
-
+  if (torf) {
+   try {
+    if (isBase) {
+     Object[] o = $_Groups.get($_DefaultIndex);
+     $_Groups.set($_DefaultIndex, new Object[]{o[0], o[1], o[2], o[3], o[4], false, o[6]});
+    }
+   } catch (Exception e) {
+   }
+   $_Groups.add(new Object[]{groupName, permissions, prefix, suffix, instance, isBase, new String[]{}});
+   System.out.println("group [" + groupName + "] been putted");
+  }
  }
 
  public static String getGroupWorlds(int group) {

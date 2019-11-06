@@ -25,10 +25,10 @@ public class Logic {
    String tSecond = "  " + Name
     + ":\n    permissions:\n    options:"
     + "\n      default: " + Default
-    + "\n      prefix: " 
-    + "\n      suffix: " 
+    + "\n      prefix: "
+    + "\n      suffix: "
     + "\n    inheritance: "
-    + "\n    worlds:\n" + getGroupWorlds(i) + "#\n";
+    + "\n    worlds:\n" + getGroupWorlds(i) + "#w#\n";
 
    for (int index = 0; index < pList.length; index++) {
     String[] pData = pList[index].split(",");
@@ -41,11 +41,11 @@ public class Logic {
       tSecond = tSecond.substring(0, tSecond.indexOf("    permissions:") + "    permissions:".length()) + "\n" + "    - -" + pData[2] + tSecond.substring(tSecond.indexOf("    permissions:") + "    permissions:".length());
      }
     } else {/*
-     if (pData[1].equals("true")) {
+      if (pData[1].equals("true")) {
       tSecond = tSecond.substring(0, tSecond.indexOf("    permissions:") + "    permissions:".length()) + "\n" + "    - " + pData[2] + tSecond.substring(tSecond.indexOf("    permissions:") + "    permissions:".length());
-     } else {
+      } else {
       tSecond = tSecond.substring(0, tSecond.indexOf("    permissions:") + "    permissions:".length()) + "\n" + "    - -" + pData[2] + tSecond.substring(tSecond.indexOf("    permissions:") + "    permissions:".length());
-     }*/
+      }*/
     }
    }
    tOut += tSecond;
